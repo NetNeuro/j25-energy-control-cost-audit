@@ -1,0 +1,57 @@
+THIRD PARTY SOURCES AND RELEASE NOTES
+
+CityLearn source repository:
+https://github.com/citylearn-project/CityLearn
+Pinned data tag:v3.1.0
+Data directory:data/datasets/vt_chittenden_county_neighborhood
+The original software license is retained in data/CITYLEARN_LICENSE.txt.
+
+Cite the CityLearn v2 paper:
+https://doi.org/10.1080/19401493.2024.2418813
+
+The selected public building profiles derive from ResStock modeled stock data.
+End-Use Load Profiles for the U.S. Building Stock:
+https://doi.org/10.25984/1876417
+https://catalog.data.gov/dataset/end-use-load-profiles-for-the-u-s-building-stock
+Public data catalogue metadata identifies Creative Commons Attribution4.0:
+https://creativecommons.org/licenses/by/4.0/
+This project selects three source building records, renames columns, aggregates demand and excludes forecast columns from the processed output; it does not represent these profiles as measured telemetry. Raw downloaded files remain unmodified. Sources, exact bytes, derived-file hashes and transformations are in data/manifest.json and src/fetch_data.py.
+
+The software MIT license and upstream data attribution are distinct. Verify the full license chain and retain appropriate notices before a public release of an expanded dataset. Full upstream archives, papers and other third-party implementations are not bundled here.
+
+The research team has not yet selected a public license for the newly authored project code, documentation and manuscript materials. Choose and document that license before public repository publication. Do not describe this starter as a formally published open-source release.
+
+J25 is cited as the scientific starting point; its full paper is linked, not redistributed:
+https://doi.org/10.3390/en18174489
+
+Dependency licenses remain with their upstream authors. The starter uses NumPy, pandas, SciPy/HiGHS and Matplotlib through the environment rather than vendoring those libraries.
+
+J25 study version 0.3 — upstream notices
+
+The original THIRD_PARTY_NOTICES.txt remains unchanged. Additional CityLearn
+profiles use the pinned v3.1.0 repository and ResStock/EULP simulation lineage.
+These public simulated building-stock profiles are not household meter data.
+Preserve the CityLearn MIT license and EULP/ResStock CC BY 4.0 attribution. Source
+URLs and SHA256 hashes are in data/study_v0_3/cohort_manifest.json.
+
+The official BOPTEST FMU and documentation are pinned by commit and hash in
+data/boptest_v0_3/source_pin.json. The native BSD license is preserved at
+data/boptest_v0_3/license.md. The compiled FMU is distributed unchanged and is
+independent upstream software. Cite Blum et al. (2021),
+doi:10.1080/19401493.2021.1986574.
+
+The legacy GCC Fortran runtime is fetched separately from its original Ubuntu
+package by tools/prepare_boptest_runtime.py, with a pinned package SHA256.
+Preserve its copyright and GCC runtime exception notices after installation.
+Neither the downloaded runtime package nor its extracted binaries are included
+in this release. It is not relicensed under the project MIT license. Python
+packages likewise retain their original licenses.
+
+Downloaded third-party literature PDFs and full article text extracts were local
+research references and are excluded from the archive. Own reference/provenance
+records remain included. No redistribution permission is assumed. An initially
+guessed CityLearn preprint ID resolved to an unrelated mathematics paper; that
+item was excluded from the scientific evidence and is not redistributed.
+
+LICENSE_PROJECT_v0_3.txt covers new project code only. It does not alter any
+upstream license or impose new terms on the preserved pilot.
