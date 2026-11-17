@@ -1,44 +1,65 @@
-# J25 electricity and heat control cost audit
+# Residential heat-pump controller cost audit
 
-Reproducibility code for **Auditing cost savings in learning assisted electricity and heat control with matched service and storage**.
+Reproducibility materials for **Auditing building-controller cost savings in
+residential heat-pump systems with matched heat service and final storage**.
 
-Authors: Anfal Hathah and Md Mottahir Alam. ORCID: https://orcid.org/0000-0003-2127-7183.
+Authors: Anfal Hathah and Md Mottahir Alam.
+ORCID: https://orcid.org/0000-0003-2127-7183.
 
-The audit crosses exact hourly delivered heat and final thermal inventories between two recorded policies. Saved LP primal and dual solutions support numerical checks before the electricity-cost gap is separated into native dispatch regret, service and final-storage terms.
+The current complete public-data archive is Zenodo version 1.2:
+https://doi.org/10.5281/zenodo.24109049. No earlier Zenodo release is required.
 
 ## Files
 
-- `J25_Reproducibility_Code_v1_0_0.zip`: 73 source, test and scientific-configuration files with a SHA256 manifest. Extracting the ZIP preserves the package paths used by the programs.
-- Complete public data, fitted models, controller trajectories, audit solutions and executable source: https://doi.org/10.5281/zenodo.23978238.
-- `CITATION.cff`: software citation metadata.
-- `LICENSE.txt` and `THIRD_PARTY_NOTICES.txt`: component-specific license terms.
-
-The source ZIP preserves the directory layout while keeping large numerical arrays out of Git history. The complete Zenodo archive includes the same source code.
+- `J25_Reproducibility_Code_v1_2.zip`: executable source, tests, configurations
+  and source manifests, including the extension and S17 analysis. Download the
+  full Zenodo package for raw profiles, fitted models and numerical arrays.
+- `J25_Supplementary_Analysis_Code_v1_0.zip`: a self-contained reproduction of
+  main Table 11 and Supplement S17 with selected audit records, fixed settings,
+  paired-bootstrap code and results. This same ZIP is included in Zenodo 1.2.
+- `CITATION.cff`, `LICENSE.txt`, `THIRD_PARTY_NOTICES.txt`, `SHA256SUMS.txt`:
+  citation, rights and checksums.
 
 ## Reproduce
 
-Download and extract `J25_Public_Data_Reproducibility_v1_0_0.zip` from Zenodo into a fresh directory. Keep `J25_v0_8` and `science_v05` as siblings. These directory names identify the frozen experiment; the public release is 1.0.0.
-
-From the extracted root:
+Download all files from Zenodo version 1.2 into one directory, then run:
 
 ```bash
-python verify_archive.py
+python prepare_package.py --out J25_Reproduction
+cd J25_Reproduction
+python verify_package.py
 python -m pip install -r J25_v0_8/requirements_v0_8.txt
-python -m unittest discover -s science_v05/reviewer_project/tests
-python -m unittest discover -s J25_v0_8/src -p "test_*.py"
-python J25_v0_8/src/reproduce.py --quick --work-dir /new/path/quick_repeat
-python J25_v0_8/src/recompute_audit.py --quick --work-dir /new/path/audit_repeat
 python J25_v0_8/src/verify_science.py
+python J25_Supplementary_Analysis_v1_0/analyze.py --output s17_repeat
 ```
 
-Output directories must not already exist. The inner README gives full-repetition commands and instructions for the separate dynamic FMU study. Install the pinned dependencies before loading the fitted models. The primary public-profile experiment requires no FMU runtime or new data capture.
+For only the added regime and uncertainty analysis, extract the supplementary
+analysis ZIP and run `python analyze.py --output regenerated_results` from its
+directory after installing its requirements.
 
-## Recorded evidence
+## Evidence and scope
 
-The reference results contain 4,032 policy rollouts, including 2,688 rollouts on 36 additional public building profiles, and 9,976 distinct saved audit LP solutions. All 28 original tests and eight audit tests passed. Six new-cohort episodes repeated exactly, and four audit cases covering 56 policy contrasts were re-solved. A second full campaign was not run.
+The controller campaign covers 87 test homes and 6,496 rollouts. All 17,375
+distinct dispatch LPs passed the numerical checks. The 36-home replication
+was repeated from regenerated models before the 33-home extension.
 
-The learned controller had a lower bill than Rule 100 but did not meet its thermal-service improvement criterion. The audit is offline model-based accounting, not a causal effect or field certificate. The additional profiles share source climates and annual weather sequences.
+In replication, service and storage explain 0.77% of fixed-COP MPC savings
+in nominal replays and 27.33% under conversion stress, or 16.17% pooled
+(95% descriptive interval 8.47–22.83%). The learned scorer's share is 0.20%
+(−0.31–0.82%). With adaptive MPC as reference, the scorer costs 1,520.30 units
+more. Combined 69-home contract shares are 15.72% and 0.10%.
 
-## License
+The 2,464 extension trajectory arrays and 6,843 extension LP arrays are
+regenerated from archived inputs and scripts; expected hashes and original
+verification receipts are supplied. The archive README explains fresh-output
+directories and the complete controller, audit and dynamic-study commands.
 
-Project code follows the included MIT license. CityLearn, ResStock/EULP and BOPTEST materials retain their original licenses and attribution, including CC BY 4.0 where applicable. See the notices and source manifests in the complete archive. The deposit contains reproducibility materials rather than the manuscript or author-only documents.
+Results use simulated public profiles, assumed equipment and tariffs, one
+source weather year and weekly inventory resets. The audit accounts for
+electricity cost under the stated model; heat-service attribution does not
+measure occupant welfare. Scientific limitations remain part of the record.
+
+## Rights
+
+Project code uses the included MIT license. CityLearn, ResStock/EULP and
+BOPTEST components retain their original licenses and attribution.

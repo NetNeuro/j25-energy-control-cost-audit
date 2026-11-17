@@ -1,15 +1,16 @@
 cff-version: 1.2.0
-message: "Please cite the versioned Zenodo archive when using this software or its numerical results."
+message: "Please cite this reproducibility release."
 type: software
-title: "Auditing cost savings in learning assisted electricity and heat control with matched service and storage — Reproducibility software and public data"
-version: 1.0.0
-date-released: '2026-11-05'
+title: "Auditing building-controller cost savings in residential heat-pump systems with matched heat service and final storage — Reproducibility software and public data"
 authors:
   - family-names: Hathah
     given-names: Anfal
   - family-names: Alam
     given-names: Md Mottahir
-    orcid: https://orcid.org/0000-0003-2127-7183
-doi: 10.5281/zenodo.23978238
-repository-code: https://github.com/NetNeuro/j25-energy-control-cost-audit
+    orcid: "https://orcid.org/0000-0003-2127-7183"
+version: "1.2"
+date-released: 2026-11-10
+doi: 10.5281/zenodo.24109049
+url: "https://zenodo.org/records/24109049"
+repository-code: "https://github.com/NetNeuro/j25-energy-control-cost-audit"
 license: MIT
